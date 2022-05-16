@@ -4,7 +4,9 @@ import matplotlib.pyplot as plt # GRAPHING AND VISUALIZATIONS
 import os
 import cv2
 from sklearn import preprocessing # for data preprocess, e.g label encoding
+from sklearn.model_selection import train_test_split # for splitting train data for validation
 from keras.utils import np_utils
+from keras.preprocessing.image import ImageDataGenerator
 
 class Image_dataset:
 
@@ -62,6 +64,7 @@ class Image_dataset:
         # ImageDataGenerator() randomly changes the characteristics of images and provides randomness in the data
         generator = ImageDataGenerator(rotation_range = 180,zoom_range = 0.1,width_shift_range = 0.1,height_shift_range = 0.1,horizontal_flip = True,vertical_flip = True)
         generator.fit(x_train)
+
 if __name__ == "__main__":
     test = Image_dataset()
     test.load_train_file('train')
