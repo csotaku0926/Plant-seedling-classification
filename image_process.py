@@ -3,6 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt # GRAPHING AND VISUALIZATIONS
 import os
 import cv2
+from sklearn import preprocessing # for data preprocess, e.g label encoding
+from keras.utils import np_utils
 
 class Image_dataset:
 
@@ -28,7 +30,6 @@ class Image_dataset:
     # convert image to hsv, remove background and noise
     def clean_img(self):
         new_train = []
-        getEx = True
         for i in self.train_set:
             blurr = cv2.GaussianBlur(i,(5,5),0)
             hsv = cv2.cvtColor(blurr,cv2.COLOR_BGR2HSV)
@@ -42,25 +43,29 @@ class Image_dataset:
             new = np.zeros_like(i,np.uint8)
             new[boolean] = i[boolean]
             new_train.append(new)
-            # show image for one time
-            if getEx:
-                plt.subplot(2,3,1);plt.imshow(i) # ORIGINAL
-                plt.subplot(2,3,2);plt.imshow(blurr) # BLURRED
-                plt.subplot(2,3,3);plt.imshow(hsv) # HSV CONVERTED
-                plt.subplot(2,3,4);plt.imshow(mask) # MASKED
-                plt.subplot(2,3,5);plt.imshow(boolean) # BOOLEAN MASKED
-                plt.subplot(2,3,6);plt.imshow(new) # NEW PROCESSED IMAGE
-                plt.show()
-                getEx = False
         self.train_set = np.asarray(new_train)
-        # CLEANED IMAGES
-        for i in range(8):
-            plt.subplot(2,4,i+1)
-            plt.imshow(self.train_set[i])
     
+    # use sklearn to do label encoding
+    def label_encoding(self):
+        labels = preprocessing.LabelEncoder()
+        labels.fit(self.train_labels[0]) # collect label from the datasets of images
+        # tranform label into binary format
+        encoded_label = labels.transform(self.train_labels[0])
+        binary_label = np_utils.to_categorical(encoded_label)
+        self.train_labels = binary_label
+
+        # split the train data to prevent overfitting
+    def split_data(self):
+        self.train_set = self.train_set/255
+        x_train, x_test, y_train, y_test = train_test_split(self.train_set, self.train_labels, test_size=0.1, random_state=self.seed, stratify=self.train_labels)
+        # prevent overfitting
+        # ImageDataGenerator() randomly changes the characteristics of images and provides randomness in the data
+        generator = ImageDataGenerator(rotation_range = 180,zoom_range = 0.1,width_shift_range = 0.1,height_shift_range = 0.1,horizontal_flip = True,vertical_flip = True)
+        generator.fit(x_train)
 if __name__ == "__main__":
     test = Image_dataset()
     test.load_train_file('train')
-    test.clean_img()
+    #test.clean_img()
+    test.label_encoding()
 
     
