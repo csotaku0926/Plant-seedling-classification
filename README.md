@@ -3,7 +3,13 @@
 # Overview of the task
 Plant seedling classification is a competition on Kaggle, which requires to classify unseen seedlings' pictures into one of the twelve given species classes accurately. We intended to apply convolutional  neural networks (CNN) and residual networks to perform the task.
 
-# Prerequsite
+# Prerequsite for CNN, ensemble
 Coding environment :　Google Colab with GPU supported
-Package : 
-![image](https://user-images.githubusercontent.com/71249897/173239633-5ed52755-56eb-4fb7-bc02-dcf766bf7967.png)
+
+Package : pandas, numpy, matplotlib.pyplot (graphing and ploting result), os, cv2, keras.model, keras.layer, keras.callback, keras.preprocessing.image (for image data generator), keras.utils, sklearn.metrics, sklearn.model_selection (for train_test_split)
+
+hyperparameters : scale = 100, seed = 7
+
+# Experiement Result
+![image](https://user-images.githubusercontent.com/71249897/173239878-ea5cd0dd-cf9d-4297-887f-e76809e12e85.png)
+
