@@ -11,7 +11,7 @@ Package : pandas, numpy, matplotlib.pyplot (graphing and ploting result), os, sy
 hyperparameters : scale = 100, seed = 7
 
 # Experiement Result
-![image]<img width="307" alt="table" src="https://user-images.githubusercontent.com/34622181/173299266-74d58771-867e-40a4-a63d-9b4c003e3d1a.png">
+<img width="307" alt="table" src="https://user-images.githubusercontent.com/34622181/173299266-74d58771-867e-40a4-a63d-9b4c003e3d1a.png">
 
 # Contributions
 Both of us contribute a lot to this project. Pei-fan Liu did the part of CNN and Alexnet, and Pei-Chen Ho was responsible for the implementation of the transfer models and SVM. We work together on the report and the literature researches.
