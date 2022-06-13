@@ -6,7 +6,7 @@ Plant seedling classification is a competition on Kaggle, which requires to clas
 # Prerequsite for CNN, ensemble
 Coding environment :　Google Colab with GPU supported
 
-Package : pandas, numpy, matplotlib.pyplot (graphing and ploting result), os, cv2, keras.model, keras.layer, keras.callback, keras.preprocessing.image (for image data generator), keras.utils, sklearn.metrics, sklearn.model_selection (for train_test_split)
+Package : pandas, numpy, matplotlib.pyplot (graphing and ploting result), os, sys, cv2, keras.model, keras.layer, keras.callback, keras.preprocessing.image (for image data generator), keras.utils, sklearn.metrics, sklearn.model_selection (for train_test_split), tqdm, glob, tensorflow, torch, torchvision, glob, PIL, seaborn
 
 hyperparameters : scale = 100, seed = 7
 
